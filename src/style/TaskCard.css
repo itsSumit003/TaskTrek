@@ -8,7 +8,7 @@
     cursor: grab;
 }
 
-.task_card:active { 
+.task_card:active {
     opacity: 0.7;
     border: 1px solid #111;
 }

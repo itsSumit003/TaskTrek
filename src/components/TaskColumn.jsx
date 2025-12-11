@@ -1,37 +1,39 @@
 import React from 'react';
-import './TaskColumn.css';
+import '../style/TaskColumn.css';
 import TaskCard from './TaskCard';
-import DropArea from './DropArea';
 
-const TaskColumn = ({ title, icon, tasks, status, handleDelete,setActiveCard}) => {
-    return (
-    <section className="task_column">
-      <h2 className="task_column_heading">
-        <img className="task_column_icon" src={icon} alt="" /> {title}
+const TaskColumn = ({ title, icon, tasks, status, handleDelete, onDrop, setActiveCard }) => {
+  const filteredTasks = tasks.filter(task => task.status === status);
+
+  const handleDragOver = (e) => e.preventDefault();
+  const handleDrop = (e) => {
+    e.preventDefault();
+    onDrop(status, filteredTasks.length);
+  };
+
+  return (
+    <section
+      className='task_column'
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+    >
+      <h2 className='task_column_heading'>
+        <img className='task_column_icon' src={icon} alt='' /> {title}
       </h2>
 
-      {/* <DropArea onDrop={() => onDrop(status, 0)} /> */}
-
-      {tasks.map(
-        (task, index) =>
-          task.status === status && (
-            <React.Fragment key={index}>
-              <TaskCard
-                title={task.task}
-                tags={task.tags}
-                handleDelete={handleDelete}
-                index={index}
-                setActiveCard={setActiveCard}
-                task={task}
-              />
-              {/* <DropArea onDrop={() => onDrop(status, index + 1)} /> */}
-            </React.Fragment>
-          )
-      )}
-
-      {/* <DropArea onDrop={() => onDrop(status, index + 1)} /> */}
+      {filteredTasks.map((task, index) => (
+        <TaskCard
+          key={index}
+          title={task.task}
+          tags={task.tags}
+          handleDelete={handleDelete}
+          index={tasks.indexOf(task)}
+          setActiveCard={setActiveCard}
+          draggable
+        />
+      ))}
     </section>
   );
 }
 
-export default TaskColumn;
+export default TaskColumn

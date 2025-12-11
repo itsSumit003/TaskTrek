@@ -1,5 +1,5 @@
 import React from 'react'
-import './Tag.css'
+import '../style/Tag.css'
 import TaskCard from './TaskCard';
 
 const Tag = ({ tagName, selectTag, selected }) => {
@@ -19,7 +19,7 @@ const Tag = ({ tagName, selectTag, selected }) => {
             {tagName}
         </button>
     );
-};
+}
 
 
 export default Tag

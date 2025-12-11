@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './TaskForm.css'
+import '../style/TaskForm.css'
 import Tag from './Tag'
 
 const TaskForm = ({ setTasks }) => {
@@ -9,7 +9,7 @@ const TaskForm = ({ setTasks }) => {
     tags: [],
   });
 
- 
+
   const checkTag = (tag) => {
     return taskData.tags.some((item) => item === tag);
   };
@@ -94,14 +94,12 @@ const TaskForm = ({ setTasks }) => {
               <option value="doing">Doing</option>
               <option value="done">Done</option>
             </select>
-            <button type="submit" className="task_submit">
-              + Add Task
-            </button>
+            <button type="submit" className="task_submit"> + Add Task</button>
           </div>
         </div>
       </form>
     </header>
-  );
+  )
 };
 
 export default TaskForm
